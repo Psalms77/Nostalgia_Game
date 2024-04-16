@@ -15,6 +15,12 @@ public class PixelTransition : ImageEffectBase
     private float currentTime = 0.0f;
     private bool is_transitioning = false;
 
+    private void Start()
+    {
+        Camera cam = Camera.main;
+        cam.gameObject.GetComponent<TestPxiel>();
+    }
+
     // Update is called once per frame
     void Update()
     {

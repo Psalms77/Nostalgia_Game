@@ -65,7 +65,7 @@ public class PlayerMovement : Observer
         GroundCheck();
         SpeedControl();
         GroundDrag();
-
+        AnimationControl();
     }
 
     private void FixedUpdate()
@@ -136,6 +136,13 @@ public class PlayerMovement : Observer
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
+    public void AnimationControl()
+    {
+        animator.SetFloat("Speed", currentSpeed);
+
+    }
+
 
     public void Jump()
     {

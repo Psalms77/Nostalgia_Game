@@ -17,14 +17,14 @@ public class TopdownPlayerMovements : Observer
 
     // mouse pointing
     Vector2 mousePos;
-
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
         cam = Camera.main;
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,9 @@ public class TopdownPlayerMovements : Observer
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
     }
     private void FixedUpdate()

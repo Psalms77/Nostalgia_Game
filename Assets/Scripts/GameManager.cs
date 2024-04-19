@@ -10,19 +10,25 @@ public class GameManager : MonoBehaviour
     //create singleton of GameMnager
     public static GameManager Instance;
 
-    public static float text_speed;
-    public static float sentence_delay_speed;
+    public static float text_speed = 0.01f;
+    public static float sentence_delay_speed = 1.75f;
     private List<string> test_sentences = new List<string>();
     private DialogueManager dm;
 
     private void Awake()
     {
-       if(Instance == null)
+       if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+       else
         {
             Instance = this;
         }
 
         dm = (DialogueManager)FindObjectOfType(typeof(DialogueManager));
+        dm.set_char_interval(text_speed);
+        dm.set_sentence_interval(sentence_delay_speed);
     }
 
     // Start is called before the first frame update
@@ -37,7 +43,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dm.display_dialogue_text();
+       // dm.display_dialogue_text();
     }
 
     public void set_text_speed(float value)
@@ -45,6 +51,7 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_char_interval(value);
         text_speed = value;
+        dm.display_dialogue_text();
     }
 
     public float get_text_speed()
@@ -57,6 +64,7 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_sentence_interval(value);
         sentence_delay_speed = value;
+        dm.display_dialogue_text();
     }
 
     public float get_sentence_delay_speed()

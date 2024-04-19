@@ -10,13 +10,17 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogue_text;
     public GameObject can_interact_text;
 
-    public float display_char_interval = 0.005f;
-    public float display_sentence_interval = 1.0f;
+    private float display_char_interval = 0.005f;
+    private float display_sentence_interval = 1.0f;
     private List<string> sentence_list = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
+        //set text and sentence speed from GameMnager
+        display_char_interval = GameManager.Instance.get_text_speed();
+        display_sentence_interval = GameManager.Instance.get_sentence_delay_speed();
+
         //hide dialogue at start
         dialogue_text.gameObject.SetActive(false);
         can_interact_text.SetActive(false);
@@ -30,6 +34,16 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    public void set_char_interval(float value)
+    {
+        display_char_interval = value;
+    }
+
+    public void set_sentence_interval(float value)
+    {
+        display_sentence_interval = value;
+    }
+
     public void display_can_interact_text()
     {
         can_interact_text.SetActive(true);
@@ -38,6 +52,11 @@ public class DialogueManager : MonoBehaviour
     public void hide_can_interact_text()
     {
         can_interact_text.SetActive(false);
+    }
+
+    public void display_dialogue_text()
+    {
+        dialogue_text.gameObject.SetActive(true);
     }
 
     public void set_sentence_list(List<string> new_sentences)
@@ -55,7 +74,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator display_sentence_text()
     {
-        dialogue_text.gameObject.SetActive(true);
+        display_dialogue_text();
 
 
         foreach (string sentence in sentence_list)
@@ -68,6 +87,14 @@ public class DialogueManager : MonoBehaviour
                 //display one char at a time
                 //wait to display next text
                 dialogue_text.text += sentence[i];
+
+                if (Input.GetKey(KeyCode.E))
+                {
+                    print("Skip to finish");
+                    i = sentence.Length;
+                    dialogue_text.text = sentence;
+                }
+
                 yield return new WaitForSeconds(display_char_interval);
             }
 

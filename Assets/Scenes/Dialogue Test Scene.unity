@@ -1734,6 +1734,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4092318164402557861, guid: 74a7f24bacfb92d40bf893c1179c6de2, type: 3}
+      propertyPath: sentences.Array.data[0]
+      value: This is a a test sentence to check the length of the dialogue.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092318164402557861, guid: 74a7f24bacfb92d40bf893c1179c6de2, type: 3}
+      propertyPath: sentences.Array.data[1]
+      value: On trigger dialogue. Lengthy and wordy as needed
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -18,10 +18,15 @@ public class SliderTextSpeed : MonoBehaviour
     public float min_sentence_delay_slider_amount = 1.0f;
     public float max_sentence_delay_slider_amount = 5.0f;
 
+    DialogueManager dm;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        dm = FindObjectOfType<DialogueManager>();
         text_speed_slider.minValue = min_text_speed_slider_amount;
         text_speed_slider.maxValue = max_text_speed_slider_amount;
         sentence_delay_slider.minValue = min_sentence_delay_slider_amount;
@@ -35,7 +40,7 @@ public class SliderTextSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        dm.display_dialogue_text();
     }
 
     public void TextSpeedSliderChange(float value)

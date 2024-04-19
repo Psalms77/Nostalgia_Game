@@ -6,7 +6,9 @@ public enum interaction_type { onTrigger, onInteract }
 
 public class Dialogue : MonoBehaviour
 {
+    public bool is_last = false;
     public interaction_type dialogue_type;
+    public Sprite memory_sprite;
     bool in_interact_range = false;
     bool has_interacted = false;
 
@@ -35,12 +37,14 @@ public class Dialogue : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.tag);
         if (other.tag == "Player")
             in_interact_range = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
+        print(other.tag);
         if (other.tag == "Player")
         {
             in_interact_range = false;
@@ -48,11 +52,36 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print(collision.tag);
+        if (collision.tag == "Player")
+        {
+            in_interact_range = true;
+            dm.hide_can_interact_text();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        print(collision.tag);
+        if (collision.tag == "Player")
+        {
+            in_interact_range = false;
+        }
+    }
+
     void process_dialogue_action()
     {
+        dm.set_is_final_flag(is_last);
         switch (dialogue_type)
         {
             case interaction_type.onTrigger:
+                if (memory_sprite != null)
+                {
+                  //  print("setting image");
+                    dm.set_image(memory_sprite);
+                }
                 dm.set_sentence_list(sentences);
                 has_interacted = true;
                 this.gameObject.SetActive(false);
@@ -61,6 +90,11 @@ public class Dialogue : MonoBehaviour
                 dm.display_can_interact_text();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    if (memory_sprite != null)
+                    {
+                       // print("setting image");
+                        dm.set_image(memory_sprite);
+                    }
                     dm.hide_can_interact_text();
                     dm.set_sentence_list(sentences);
                     has_interacted = true;

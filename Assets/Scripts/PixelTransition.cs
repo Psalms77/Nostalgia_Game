@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Pixelation.Example.Scripts;
 
-public class PixelTransition : ImageEffectBase
+public class PixelTransition : MonoBehaviour
 {
     //BlockCount Amount
     public float starting_amount = 512.0f;
@@ -15,10 +15,13 @@ public class PixelTransition : ImageEffectBase
     private float currentTime = 0.0f;
     private bool is_transitioning = false;
 
+    private Pixelation pixelation;
+
     private void Start()
     {
+        current_amount = starting_amount;
         Camera cam = Camera.main;
-        cam.gameObject.GetComponent<TestPxiel>();
+        pixelation = cam.gameObject.GetComponent<Pixelation>();
     }
 
     // Update is called once per frame
@@ -28,35 +31,29 @@ public class PixelTransition : ImageEffectBase
 
         if (is_transitioning == true)
         {
+            print("reached");
             if (current_amount > transition_amount)
             {
+                print("mana mana");
                 float lerp_value = Mathf.Clamp01(currentTime / transition_duration);
                 current_amount = Mathf.Lerp(current_amount, transition_amount, lerp_value);
+                pixelation.BlockCount = current_amount;
+                print("pixel count: " + pixelation.BlockCount);
             }
             else
             {
                 is_transitioning = false;
+                this.gameObject.SetActive(false);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
+            print("fellas, we got him");
             is_transitioning = true;
         }
-    }
-
-
-    private void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-        float k = Camera.main.aspect;
-        Vector2 count = new Vector2(current_amount, current_amount / k);
-        Vector2 size = new Vector2(1.0f / count.x, 1.0f / count.y);
-        //
-        material.SetVector("BlockCount", count);
-        material.SetVector("BlockSize", size);
-        Graphics.Blit(source, destination, material);
     }
 }

@@ -27,17 +27,20 @@ public class GameManager : MonoBehaviour
         }
 
         dm = (DialogueManager)FindObjectOfType(typeof(DialogueManager));
-        dm.set_char_interval(text_speed);
-        dm.set_sentence_interval(sentence_delay_speed);
+        if (dm != null)
+        {
+            dm.set_char_interval(text_speed);
+            dm.set_sentence_interval(sentence_delay_speed);
+            test_sentences.Add("This is a test sentence. Can you read this properly?");
+            test_sentences.Add("This is the second sentence. Was the pause too long?");
+            //dm.set_sentence_list(test_sentences);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        print(dm.name);
-        test_sentences.Add("This is a test sentence. Can you read this properly?");
-        test_sentences.Add("This is the second sentence. Was the pause too long?");
-        dm.set_sentence_list(test_sentences);
+
     }
 
     // Update is called once per frame
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_char_interval(value);
         text_speed = value;
-        dm.display_dialogue_text();
+       // dm.display_dialogue_text();
     }
 
     public float get_text_speed()
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_sentence_interval(value);
         sentence_delay_speed = value;
-        dm.display_dialogue_text();
+        //dm.display_dialogue_text();
     }
 
     public float get_sentence_delay_speed()

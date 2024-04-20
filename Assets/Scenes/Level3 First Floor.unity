@@ -3920,12 +3920,20 @@ PrefabInstance:
       value: Dialogue Manager
       objectReference: {fileID: 0}
     - target: {fileID: 3456343057239073388, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456343057239073388, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456343057239073388, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456343057239073388, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -318.5
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 3597147405670279151, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3979,6 +3987,22 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9030303242878575304, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030303242878575304, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030303242878575304, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 212.91003
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030303242878575304, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -253
+      objectReference: {fileID: 0}
     - target: {fileID: 9039238420604792797, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3986,6 +4010,18 @@ PrefabInstance:
     - target: {fileID: 9128075399957242253, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172220488830217669, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172220488830217669, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1600
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172220488830217669, guid: 7787cb0cab0cdf54c8d9c8203091fd55, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 900
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

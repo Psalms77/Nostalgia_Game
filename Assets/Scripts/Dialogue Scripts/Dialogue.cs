@@ -73,7 +73,10 @@ public class Dialogue : MonoBehaviour
 
     void process_dialogue_action()
     {
-        dm.set_is_final_flag(is_last);
+        if (is_last == true)
+        {
+            dm.set_is_final_flag(is_last);
+        }
         switch (dialogue_type)
         {
             case interaction_type.onTrigger:

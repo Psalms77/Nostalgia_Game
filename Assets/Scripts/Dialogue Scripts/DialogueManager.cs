@@ -33,7 +33,6 @@ public class DialogueManager : MonoBehaviour
 
         image_object.gameObject.SetActive(false);
 
-        sentence_list.Clear();
     }
 
     // Update is called once per frame

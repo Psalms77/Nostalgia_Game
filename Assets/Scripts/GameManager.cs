@@ -29,24 +29,46 @@ public class GameManager : MonoBehaviour
         dm = (DialogueManager)FindObjectOfType(typeof(DialogueManager));
         if (dm != null)
         {
-            dm.set_char_interval(text_speed);
+           dm.set_char_interval(text_speed);
             dm.set_sentence_interval(sentence_delay_speed);
+            test_sentences.Clear();
             test_sentences.Add("This is a test sentence. Can you read this properly?");
             test_sentences.Add("This is the second sentence. Was the pause too long?");
-            //dm.set_sentence_list(test_sentences);
+            dm.set_sentence_list(test_sentences);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if(dm != null)
+        {
+            dm.set_char_interval(text_speed);
+            dm.set_sentence_interval(sentence_delay_speed);
+            test_sentences.Clear();
+            test_sentences.Add("This is a test sentence. Can you read this properly?");
+            test_sentences.Add("This is the second sentence. Was the pause too long?");
+            dm.set_sentence_list(test_sentences);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
        // dm.display_dialogue_text();
+       if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = !Cursor.visible;
+
+            if(Cursor.lockState == CursorLockMode.Locked || Cursor.lockState == CursorLockMode.Confined)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
     public void set_text_speed(float value)
@@ -54,7 +76,8 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_char_interval(value);
         text_speed = value;
-       // dm.display_dialogue_text();
+        set_dialogue_sentences();
+        dm.display_dialogue_text();
     }
 
     public float get_text_speed()
@@ -67,7 +90,8 @@ public class GameManager : MonoBehaviour
         print(value);
         dm.set_sentence_interval(value);
         sentence_delay_speed = value;
-        //dm.display_dialogue_text();
+        set_dialogue_sentences();
+        dm.display_dialogue_text();
     }
 
     public float get_sentence_delay_speed()

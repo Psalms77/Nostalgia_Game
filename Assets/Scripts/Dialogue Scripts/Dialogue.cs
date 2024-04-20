@@ -68,6 +68,7 @@ public class Dialogue : MonoBehaviour
         if (collision.tag == "Player")
         {
             in_interact_range = false;
+            dm.hide_can_interact_text();
         }
     }
 
